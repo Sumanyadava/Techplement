@@ -2,9 +2,15 @@ require("dotenv").config();
 
 const express = require("express");
 const { connectToMongoDB } = require("./database")
+const path = require("path")
 
 const app = express();
 app.use(express.json());
+
+app.use(express.static(path.join(__dirname,"build")));
+app.get("/", (req, res) => {
+    res.sendFile(path.join(_dirname, "build/index.html"));
+})
 
 
 
